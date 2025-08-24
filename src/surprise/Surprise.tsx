@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
 import { Heart } from "lucide-react";
+import { useEffect, useState } from "react";
 import "./BirthdaySurpriseApp.css";
 
 const BirthdaySurpriseApp = () => {
