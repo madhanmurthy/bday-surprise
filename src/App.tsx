@@ -1,4 +1,4 @@
-import BirthdaySurpriseApp from "./surprise/surprise";
+import BirthdaySurpriseApp from "./surprise/BirthdaySurpriseApp";
 
 const App = () => {
   return (
