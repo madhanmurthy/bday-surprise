@@ -22,11 +22,12 @@ const BirthdaySurpriseApp = () => {
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [showFinalSurprise, setShowFinalSurprise] = useState(false);
 
-  const birthdayMessage = `Manjuuh, on this special day I just want to celebrate you — a quiet source of strength, inspiration, and light in my life. The way you stay kind, grounded, and strong even through the toughest days is something I’ve always admired.
-
-This little surprise is only a small reflection of how grateful I am to know you. You may not realize it, but you’ve made a difference in more ways than you know — sometimes as a guide, sometimes as a friend, and sometimes just as the quiet support I never knew I needed.
-
-On your birthday, I wish you peace where you need it, joy in the little things, and all the happiness your heart truly deserves. You’re one of a kind, and I’ll always be thankful for the space you hold in my story.`;
+  const birthdayMessage = `Hey Manjuuh,
+I know you're not one for big gestures or over-the-top celebrations, but I couldn't let your birthday pass without telling you what you mean to me.
+You have this quiet way about you that just makes everything feel more steady. I've watched you handle things that would break most people, and somehow you still show up with that same gentle strength and kindness. It's honestly incredible.
+I wanted to do something small to show you how much I appreciate having you in my life. You probably don't even realize the impact you have – the way you listen without judgment, offer perspective when I'm lost, or just exist as this calming presence when everything else feels chaotic. Sometimes you're the voice of reason I desperately need, sometimes you're just the friend who gets it, and sometimes you're simply there in that quiet, reassuring way that means everything.
+So on your birthday, I'm hoping you find those pockets of peace you deserve, that you notice and smile at the small beautiful moments, and that this new year brings you genuine happiness – the deep, real kind that matches who you are.
+You're rare, Manjuuh. And I'm really grateful our paths crossed and that you're part of my story.`;
 
   // Generate falling hearts
   useEffect(() => {
