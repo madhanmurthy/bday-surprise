@@ -1,11 +1,14 @@
 import { Heart } from "lucide-react";
 import { useEffect, useState } from "react";
 import "./BirthdaySurpriseApp.css";
+import RotatingGallery from "./RotatingGallery";
 
 const BirthdaySurpriseApp = () => {
   const [currentPage, setCurrentPage] = useState("landing");
   const [countdown, setCountdown] = useState(10);
   const [showCountdown, setShowCountdown] = useState(false);
+  const [show3DGallery, setShow3DGallery] = useState(false);
+
   type HeartType = {
     id: number;
     left: number;
@@ -13,17 +16,17 @@ const BirthdaySurpriseApp = () => {
     duration: number;
     delay: number;
   };
+
   const [hearts, setHearts] = useState<HeartType[]>([]);
   const [typewriterText, setTypewriterText] = useState("");
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [showFinalSurprise, setShowFinalSurprise] = useState(false);
 
-  const birthdayMessage = `
-There are some people who leave a mark on our life that never fades, and for me, that's you. You've always been more than just a friend you've been someone I admire, someone who has taught me more through actions than words. Your strength, patience, and kindness are lessons I'll always carry with me.
+  const birthdayMessage = `Manjuuh, on this special day I just want to celebrate you — a quiet source of strength, inspiration, and light in my life. The way you stay kind, grounded, and strong even through the toughest days is something I’ve always admired.
 
-I'll never forget the times when I felt alone and you were there. That's something I'll always be grateful for. No matter what comes between us distance, silence, or misunderstandings you'll always hold a place in my life that no one else can replace.
+This little surprise is only a small reflection of how grateful I am to know you. You may not realize it, but you’ve made a difference in more ways than you know — sometimes as a guide, sometimes as a friend, and sometimes just as the quiet support I never knew I needed.
 
-On your birthday, my only wish is for you to have all the happiness, peace, and love that your heart deserves. You are truly special, and I hope this year gives you every reason to smile.
-
-– Madhan 🩷`;
+On your birthday, I wish you peace where you need it, joy in the little things, and all the happiness your heart truly deserves. You’re one of a kind, and I’ll always be thankful for the space you hold in my story.`;
 
   // Generate falling hearts
   useEffect(() => {
@@ -43,7 +46,7 @@ On your birthday, my only wish is for you to have all the happiness, peace, and 
 
     if (currentPage === "landing") {
       generateHearts();
-      const interval = setInterval(generateHearts, 6000);
+      const interval = setInterval(generateHearts, 10000);
       return () => clearInterval(interval);
     }
   }, [currentPage]);
@@ -72,6 +75,9 @@ On your birthday, my only wish is for you to have all the happiness, peace, and 
           index++;
         } else {
           clearInterval(timer);
+          setTimeout(() => {
+            setIsTypingComplete(true);
+          }, 1000);
         }
       }, 100);
       return () => clearInterval(timer);
@@ -81,6 +87,46 @@ On your birthday, my only wish is for you to have all the happiness, peace, and 
   const handleClick = () => {
     setShowCountdown(true);
   };
+
+  // const handleRevealSurprise = () => {
+  //   setShowFinalSurprise(true);
+  // };
+
+  const handleShow3DGallery = () => {
+    setShow3DGallery(true);
+  };
+
+  // If showing 3D gallery, render it full screen
+  if (show3DGallery) {
+    return (
+      <div className="gallery-fullscreen">
+        {/* <h2 className="gallery-title">29 Stories ✨, 1 Beautiful Soul 💖</h2> */}
+        <RotatingGallery />
+        <button
+          onClick={() => setShow3DGallery(false)}
+          className="back-button"
+          style={{
+            position: "absolute",
+            top: "20px",
+            right: "0px",
+            zIndex: 1000,
+            padding: "10px 20px",
+            background: "linear-gradient(135deg, #ff6b6b, #ee5a24)",
+            color: "white",
+            border: "none",
+            borderRadius: "25px",
+            cursor: "pointer",
+            fontSize: "16px",
+            fontWeight: "600",
+            boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
+            transition: "all 0.3s ease",
+          }}
+        >
+          ← Back to Message
+        </button>
+      </div>
+    );
+  }
 
   if (currentPage === "landing") {
     return (
@@ -131,8 +177,6 @@ On your birthday, my only wish is for you to have all the happiness, peace, and 
         <div className="bg-emoji bg-emoji-4">🎈</div>
         <div className="bg-emoji bg-emoji-5">🎉</div>
         <div className="bg-emoji bg-emoji-6">✨</div>
-
-        {/* Multiple Candles */}
         <div className="bg-emoji bg-emoji-7">🕯️</div>
         <div className="bg-emoji bg-emoji-8">🕯️</div>
         <div className="bg-emoji bg-emoji-9">🎂</div>
@@ -141,13 +185,67 @@ On your birthday, my only wish is for you to have all the happiness, peace, and 
       {/* Birthday Card */}
       <div className="birthday-card">
         <div className="card-content">
-          <h1 className="card-title">🎊 Happy Birthday Manjari 🩷! 🎊</h1>
-          <div className="message-container">
-            <p className="typewriter-text">
-              {typewriterText}
-              <span className="cursor">|</span>
-            </p>
-          </div>
+          <h1 className="card-title">29 Stories ✨, 1 Precious Soul 💖</h1>
+
+          {/* Only show message container if surprise hasn't been revealed */}
+          {!showFinalSurprise && (
+            <div className="message-container">
+              <p className="typewriter-text">
+                {typewriterText}
+                {!isTypingComplete && <span className="cursor">|</span>}
+              </p>
+            </div>
+          )}
+
+          {isTypingComplete && !showFinalSurprise && (
+            <div className="reveal-button-container">
+              <button onClick={handleShow3DGallery} className="reveal-button">
+                Reveal Surprise! ✨
+              </button>
+            </div>
+          )}
+
+          {showFinalSurprise && (
+            <div className="final-surprise">
+              <div className="surprise-content">
+                {/* <h2 className="surprise-title">🎊 SURPRISE! 🎊</h2> */}
+                <p className="surprise-message">
+                  Manjari, you light up every room you enter with your beautiful
+                  smile and kind heart. Your friendship is a treasure that I
+                  cherish deeply. May this new year of your life bring you
+                  endless joy, adventures, and all the love you deserve! 🌟💕
+                </p>
+                {/* <div className="gift-emoji">🎁</div> */}
+                {/* Buttons for navigation */}
+                <div
+                  style={{
+                    marginTop: "20px",
+                    display: "flex",
+                    gap: "1rem",
+                    justifyContent: "center",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <button
+                    onClick={handleShow3DGallery}
+                    className="reveal-button"
+                  >
+                    Reveal Surprise
+                  </button>
+                  <button
+                    onClick={() => setShowFinalSurprise(false)}
+                    className="reveal-button"
+                    style={{
+                      background: "linear-gradient(135deg, #6b7280, #4b5563)",
+                    }}
+                  >
+                    Read Message Again
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="celebration-emojis">
             <span className="celebration-emoji celebration-emoji-1">🎈</span>
             <span className="celebration-emoji celebration-emoji-2">🎉</span>
