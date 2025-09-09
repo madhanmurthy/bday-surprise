@@ -155,7 +155,7 @@ You're rare, Manjuuh. And I'm really grateful our paths crossed and that you're 
         <div className="landing-content">
           {!showCountdown ? (
             <button onClick={handleClick} className="surprise-button">
-              Ready for a Surprise? 💕
+              Ready for a Surprise? 💖
             </button>
           ) : (
             <div className="countdown-circle">
