@@ -47,7 +47,7 @@ You're rare, Manjuuh. And I'm really grateful our paths crossed and that you're 
 
     if (currentPage === "landing") {
       generateHearts();
-      const interval = setInterval(generateHearts, 10000);
+      const interval = setInterval(generateHearts, 30000);
       return () => clearInterval(interval);
     }
   }, [currentPage]);

@@ -8,8 +8,8 @@ import img6 from "../../public/img-6.jpg";
 import img7 from "../../public/img-7.jpg";
 import img8 from "../../public/img-8.jpg";
 import img9 from "../../public/img-9.jpg";
-// import img10 from "../../public/img-1.jpg";
-// import bgImage from "./images/bg.png";
+import img10 from "../../public/img-10.jpg";
+import img11 from "../../public/img-11.jpg";
 import "./RotatingGallery.css";
 
 const RotatingGallery = () => {
@@ -23,7 +23,8 @@ const RotatingGallery = () => {
     img7,
     img8,
     img9,
-    //  img10
+    img10,
+    img11,
   ];
   return (
     <div className="banner">
